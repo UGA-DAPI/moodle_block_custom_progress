@@ -1,0 +1,291 @@
+.block_custom_progress .current-level ,mod-block-custom_progress-overview .current-level {
+    margin: 10px auto;
+    text-align: center;
+    font-size: 4em;
+    height: 100px;
+    width: 100px;
+    color: #fff;
+    line-height: 110px;
+    background: url([[pix:block_custom_progress|10]]) no-repeat;
+}
+
+.block_custom_progress .level-1 ,mod-block-custom_progress-overview .level-1{
+    background-image: url([[pix:block_custom_progress|1]]);
+}
+.block_custom_progress .level-2,mod-block-custom_progress-overview .level-2 {
+    background-image: url([[pix:block_custom_progress|2]]);
+}
+.block_custom_progress .level-3,mod-block-custom_progress-overview .level-3 {
+    background-image: url([[pix:block_custom_progress|3]]);
+}
+.block_custom_progress .level-4,mod-block-custom_progress-overview .level-4 {
+    background-image: url([[pix:block_custom_progress|4]]);
+}
+.block_custom_progress .level-5,mod-block-custom_progress-overview .level-5 {
+    background-image: url([[pix:block_custom_progress|5]]);
+}
+.block_custom_progress .level-6,mod-block-custom_progress-overview .level-6 {
+    background-image: url([[pix:block_custom_progress|6]]);
+}
+.block_custom_progress .level-7,mod-block-custom_progress-overview .level-7 {
+    background-image: url([[pix:block_custom_progress|7]]);
+}
+.block_custom_progress .level-8 ,mod-block-custom_progress-overview .level-8{
+    background-image: url([[pix:block_custom_progress|8]]);
+}
+.block_custom_progress .level-9 ,mod-block-custom_progress-overview .level-9{
+    background-image: url([[pix:block_custom_progress|9]]);
+}
+.block_custom_progress .level-10,mod-block-custom_progress-overview .level-10 {
+    background-image: url([[pix:block_custom_progress|10]]);
+}
+
+.block_custom_progress .level-badge, mod-block-custom_progress-overview .level-badge {
+    background: none;
+    height: auto;
+    width: auto;
+}
+.block_custom_progress .level-badge img, mod-block-custom_progress-overview .level-badge img {
+    width: 100px;
+}
+
+.block_custom_progress .description {
+    font-size: 0.9em;
+}
+.block_custom_progress .footer {
+    font-size: 0.9em;
+}
+
+/** Use over defined class name to re-use it through the block pages. */
+.block_custom_progress-level-progress {
+    margin: 0 auto;
+    max-width: 200px;
+    height: 25px;
+    border-radius: 5px;
+    background-color: #ccc;
+    position: relative;
+    margin-bottom: 10px;
+}
+.block_custom_progress-level-progress .bar, mod-block-custom_progress-overview .bar {
+    background-color: green;
+    border-radius: 5px;
+    height: 25px;
+}
+.block_custom_progress-level-progress .txt {
+    line-height: 25px;
+    text-align: center;
+    color: #fff;
+    font-size: 10px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+
+/** Using !important because of super-qualified rules to bypass. */
+.path-blocks-xp table .highlight > td{
+    background-color: #D9EDF7 !important;
+}
+
+/**
+ * Like notice.
+ */
+.block-custom-progress-notices .close {
+    display: none;
+}
+.block-custom-progress-notices .dismiss-action {
+    float: right;
+}
+.dir-rtl .block-custom-progress-notices .dismiss-action {
+    float: left;
+}
+
+/**
+ * Notification dialogue.
+ */
+
+.block_custom_progress-notification-hidden {
+    display: none;
+}
+.block_custom_progress-notification .moodle-dialogue-bd,
+.block_custom_progress-notification .moodle-dialogue-ft {
+    text-align: center !important;
+}
+.block_custom_progress-notification .level-headline {
+    font-size: 1.4em;
+    font-weight: bold;
+}
+.block_custom_progress-notification .moodle-dialogue-ft button {
+    /* Helps centering the button in the dialogue */
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/**
+ * Rule picker dialogue.
+ */
+.block_custom_progress-rulepicker-hidden {
+    display: none;
+}
+.block_custom_progress-rulepicker-content {
+    text-align: center;
+}
+
+/**
+ * Rules pages.
+ *
+ * Note: We find the very first rule using .filter-rules > .rule
+ */
+.block-custom-progress-filters-wrapper ul {
+    list-style: none;
+}
+.block-custom-progress-filters-wrapper p,
+.block-custom-progress-filters-wrapper ul,
+.block-custom-progress-filters-wrapper ul.filters-list,  /** Made more specific for RTL. */
+.block-custom-progress-filters-wrapper input[type],
+.block-custom-progress-filters-wrapper select {
+    margin: 0;
+}
+.block-custom-progress-filters-wrapper .filter-rules {
+    margin-top: 5px;
+    margin-left: 20px;
+}
+.block-custom-progress-filters-wrapper .filter {
+    padding: 8px 4px;
+    border: 1px solid #ddd;
+    margin: 10px 0;
+}
+.block-custom-progress-filters-wrapper .filter-add {
+    margin: 10px 0;
+}
+.block-custom-progress-filters-wrapper .rule-rules {
+    margin-left: 35px;
+}
+.block-custom-progress-filters-wrapper .filter-rules > .rule {
+    border: 0;
+    padding-left: 0;
+}
+.block-custom-progress-filters-wrapper .filter-rules > .rule::before {
+    border: 0;
+}
+.block-custom-progress-filters-wrapper .filter-rules > .rule > .rule-rules {
+    margin-left: 20px;
+}
+.block-custom-progress-filters-wrapper .filter-rules > .rule > .rule-definition {
+    line-height: 40px;
+    padding-left: 5px;
+}
+.block-custom-progress-filters-wrapper .rule-type-ruleset,
+.block-custom-progress-filters-wrapper .rule-type-ruleset .rule-rules > .rule:first-child {
+    padding-top: 5px;
+}
+.block-custom-progress-filters-wrapper .rule-type-ruleset > .rule-definition {
+    background-color: #f1f1f1;
+    padding-bottom: 2px;
+}
+.block-custom-progress-filters-wrapper .rule-rules .rule {
+    position: relative;
+    border-left: 1px dotted #ccc;
+    padding-left: 15px;
+    min-height: 40px;
+    line-height: 40px;
+}
+.block-custom-progress-filters-wrapper .rule-rules .rule::before {
+    content: "";
+    border-top: 1px dotted #ccc;
+    display: block;
+    width: 15px;
+    position: absolute;
+    top: 20px;
+    left: 0;
+}
+.block-custom-progress-filters-wrapper .rule-type-ruleset .rule-rules > .rule:first-child::before,
+.block-custom-progress-filters-wrapper .rule.rule-type-ruleset::before {
+    top: 25px;
+}
+.block-custom-progress-filters-wrapper .rule-add {
+    position: relative;
+    padding: 10px 17px;
+}
+.block-custom-progress-filters-wrapper .rule-add::before,
+.block-custom-progress-filters-wrapper .rule-rules .rule:last-child::before {
+    content: "";
+    border-top: 0;
+    border-left: 1px dotted #ccc;
+    border-bottom: 1px dotted #ccc;
+    display: block;
+    width: 15px;
+    height: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.block-custom-progress-filters-wrapper .rule-rules .rule:last-child {
+    border: 0;
+}
+.block-custom-progress-filters-wrapper .rule-move,
+.block-custom-progress-filters-wrapper .filter-move {
+    cursor: move;
+}
+.block-custom-progress-filters-wrapper .filter-rules > .rule > .rule-definition .rule-delete,
+.block-custom-progress-filters-wrapper .filter-rules > .rule > .rule-definition .rule-move {
+    /** Hide the move/delete button on the top rule. */
+    display: none;
+}
+
+/** Readonly filters. */
+.block-custom-progress-filters-wrapper .filters-readonly .filter {
+    padding: 10px;
+}
+.block-custom-progress-filters-wrapper .filters-readonly .filter-rules > .rule > .rule-definition,
+.block-custom-progress-filters-wrapper .filters-readonly .rule-rules .rule {
+    min-height: 30px;
+    line-height: 30px;
+}
+.block-custom-progress-filters-wrapper .filters-readonly .filter-rules > .rule > .rule-definition {
+    padding: 0 10px;
+}
+.block-custom-progress-filters-wrapper .filters-readonly .rule-type-ruleset .rule-rules > .rule:first-child::before,
+.block-custom-progress-filters-wrapper .filters-readonly .rule.rule-type-ruleset::before {
+    top: 20px;
+}
+.block-custom-progress-filters-wrapper .filters-readonly .rule-rules .rule::before {
+    top: 15px;
+}
+.block-custom-progress-filters-wrapper .filters-readonly .rule-rules .rule:last-child::before {
+    top: 0;
+    height: 15px;
+}
+
+/** RTL styles. */
+.dir-rtl .block-custom-progress-filters-wrapper .filter-rules {
+    margin-left: 0;
+    margin-right: 20px;
+}
+.dir-rtl .block-custom-progress-filters-wrapper .rule-rules {
+    margin-left: 0;
+    margin-right: 40px;
+}
+.dir-rtl .block-custom-progress-filters-wrapper .filter-rules > .rule > .rule-rules {
+    margin-left: 0;
+    margin-right: 20px;
+}
+.dir-rtl .block-custom-progress-filters-wrapper .filter-rules > .rule > .rule-definition {
+    padding-left: 0;
+    padding-right: 5px;
+}
+.dir-rtl .block-custom-progress-filters-wrapper .rule-rules .rule {
+    border-left: 0;
+    border-right: 1px dotted #ccc;
+    padding-right: 15px;
+    padding-left: 0;
+}
+.dir-rtl .block-custom-progress-filters-wrapper .rule-rules .rule::before {
+    right: 0;
+}
+.dir-rtl .block-custom-progress-filters-wrapper .rule-add::before,
+.dir-rtl .block-custom-progress-filters-wrapper .rule-rules .rule:last-child::before {
+    border-left: 0;
+    border-right: 1px dotted #ccc;
+    right: 0;
+}
