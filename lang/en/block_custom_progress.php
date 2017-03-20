@@ -248,7 +248,7 @@ $string['no_blocks'] = "No Progress Bar blocks are set up for your courses.";
 $string['no_courses'] = "You are not enrolled in any courses. Only bars from enrolled courses will be shown.";
 
 $string['levels_pix'] = 'Level badges';
-$string['levels_pix_desc'] = 'Name the files [level].[file extension], for instance: 1.png, 2.jpg, etc... The recommended image size is 100x100.';
+$string['levels_pix_desc'] = 'Name the files [level].[file extension], for instance: 0.png, 1.jpg, etc... The recommended image size is 100x100.';
 $string['levels_desc'] = 'Level description';
 $string['levels'] = 'Levels';
 

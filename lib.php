@@ -60,6 +60,7 @@
 // Global defaults.
 
 define('DEFAULT_ENABLE_CUSTOM_PIX', 0);
+define('DEFAULT_CUSTOM_SHOWINACTIVE', 0);
 
 /**
  * Provides information about monitorable modules
@@ -1420,7 +1421,7 @@ function block_custom_progress_badge($modules, $config, $events, $userid, $insta
     $percent= block_custom_progress_percentage($events, $attempts);
     $defaultlevels = get_config('block_custom_progress', 'levels') ?: 10;
     $levels = isset($config->levels) ? $config->levels : $defaultlevels;
-    $user_level= (int)round($percent / $levels);
+    $user_level= (int)round($percent * $levels/100);
     $defaultenablecustomlevelpix = get_config('block_custom_progress', 'enablecustomlevelpix') ?: DEFAULT_ENABLE_CUSTOM_PIX;
     $enablecustomlevelpix = isset($config->enablecustomlevelpix) ? $config->enablecustomlevelpix : DEFAULT_ENABLE_CUSTOM_PIX;
     $content = '';
