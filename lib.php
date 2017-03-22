@@ -1461,7 +1461,6 @@ function block_custom_progress_percentage($events, $attempts,$config) {
     }
 
     $custom_progressvalue = $attemptcount == 0 ? 0 : $attemptcount / $eventcount;
-    var_dump($attemptcount);
     return (int)round($custom_progressvalue * 100);
 }
 
