@@ -294,16 +294,6 @@ class block_custom_progress extends block_base {
             }
         }
 
-        // Organise access to JS.
-        $jsmodule = array(
-            'name' => 'block_custom_progress',
-            'fullpath' => '/blocks/custom_progress/module.js',
-            'requires' => array(),
-            'strings' => array(),
-        );
-        $arguments = array($blockinstancesonpage, array($USER->id));
-        $this->page->requires->js_init_call('M.block_custom_progress.setupScrolling', array(), false, $jsmodule);
-        $this->page->requires->js_init_call('M.block_custom_progress.init', $arguments, false, $jsmodule);
 
         return $this->content;
     }

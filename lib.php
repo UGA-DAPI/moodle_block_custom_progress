@@ -1385,10 +1385,8 @@ function block_custom_progress_attempts($modules, $config, $events, $userid, $co
 function block_custom_progress_bar($modules, $config, $events, $userid, $instance, $attempts, $course) {
     global $OUTPUT, $CFG, $USER;
     $content = '';
-    $usingrtl = right_to_left();
-    $numevents = count($events);
     
-    $percent= block_custom_progress_percentage($events, $attempts);
+    $percent= block_custom_progress_percentage($events, $attempts,$config);
     $content = '';
   
 
@@ -1416,9 +1414,7 @@ function block_custom_progress_bar($modules, $config, $events, $userid, $instanc
 function block_custom_progress_badge($modules, $config, $events, $userid, $instance, $attempts, $course) {
     global $OUTPUT, $CFG, $USER;
     $content = '';
-    $usingrtl = right_to_left();
-    $numevents = count($events);
-    $percent= block_custom_progress_percentage($events, $attempts);
+    $percent= block_custom_progress_percentage($events, $attempts,$config);
     $defaultlevels = get_config('block_custom_progress', 'levels') ?: 10;
     $levels = isset($config->levels) ? $config->levels : $defaultlevels;
     $user_level= (int)round($percent * $levels/100);
@@ -1449,19 +1445,23 @@ function block_custom_progress_badge($modules, $config, $events, $userid, $insta
  *
  * @param array $events   The possible events that can occur for modules
  * @param array $attempts The user's attempts on course activities
+ * @param stdClass $config   The blocks configuration settings
  * @return int  Progress value as a percentage
  */
-function block_custom_progress_percentage($events, $attempts) {
+function block_custom_progress_percentage($events, $attempts,$config) {
     $attemptcount = 0;
+    $eventcount = 0;
 
     foreach ($events as $event) {
+        $weight = $config->{'weight_'.$event['type'].$event['id']}?:1;
+        $eventcount += $weight;
         if ($attempts[$event['type'].$event['id']] == 1) {
-            $attemptcount++;
+            $attemptcount += $weight;
         }
     }
 
-    $custom_progressvalue = $attemptcount == 0 ? 0 : $attemptcount / count($events);
-
+    $custom_progressvalue = $attemptcount == 0 ? 0 : $attemptcount / $eventcount;
+    var_dump($attemptcount);
     return (int)round($custom_progressvalue * 100);
 }
 

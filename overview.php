@@ -275,7 +275,7 @@ for ($i = $startuser; $i < $enduser; $i++) {
             $course->id, true);
         $custom_progressbar = block_custom_progress_bar($modules, $custom_progressconfig, $userevents, $users[$i]->id, $custom_progressblock->id, $attempts,
             $course->id, true);
-        $custom_progress = block_custom_progress_percentage($userevents, $attempts, true).'%';
+        $custom_progress = block_custom_progress_percentage($userevents, $attempts, $custom_progressconfig).'%';
     } else {
         $custom_progressbar = get_string('no_visible_events_message', 'block_custom_progress');
         $custom_progressvalue = 0;

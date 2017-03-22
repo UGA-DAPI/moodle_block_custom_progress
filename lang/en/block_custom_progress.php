@@ -83,6 +83,7 @@ $string['posted_to'] = 'posted to';
 $string['responded_to'] = 'responded to';
 $string['submitted'] = 'submitted';
 $string['viewed'] = 'viewed';
+$string['weight'] = 'weight';
 
 // Stings for the Config page.
 $string['config_default_title'] = 'Custom Progress Bar';

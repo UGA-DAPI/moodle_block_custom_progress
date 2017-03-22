@@ -392,6 +392,9 @@ class block_custom_progress_edit_form extends block_edit_form {
                             }
 
                             // End box.
+                            $mform->addElement('text', 'config_weight_'.$moduleinfo->uniqueid, get_string('weight', 'block_custom_progress'));
+                            $mform->setType('config_weight_'.$moduleinfo->uniqueid, PARAM_INT);
+                            $mform->setDefault('config_weight_'.$moduleinfo->uniqueid, 1);
                             $moduleboxend = HTML_WRITER::end_tag('div');
                             $mform->addElement('html', $moduleboxend);
                         }
