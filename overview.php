@@ -184,6 +184,15 @@ if (get_config('block_custom_progress', 'showinactive') !== 1) {
 $userids = array_keys($userrecords);
 $users = array_values($userrecords);
 $numberofusers = count($users);
+foreach ($users as $key=>$user){
+    $userevents = block_custom_progress_filter_visibility($events, $user->id, $context, $course);
+    if (!empty($userevents)) {
+        $attempts = block_custom_progress_attempts($modules, $custom_progressconfig, $userevents, $user->id, $course->id);
+        $users[$key]->custom_progress = block_custom_progress_percentage( $attempts,$userevents, $custom_progressconfig);
+    } else {
+        $users[$key]->custom_progress = 0;
+    }
+}
 $paged = $numberofusers > $perpage;
 if (!$paged) {
     $page = 0;
@@ -234,21 +243,17 @@ $table->no_sorting('select');
 $select = '';
 $table->no_sorting('picture');
 $table->no_sorting('custom_progressbar');
-if ($paged) {
-    $table->no_sorting('custom_progress');
-}
+$table->no_sorting('custom_progressbadge');
 $table->define_baseurl($PAGE->url);
 $table->setup();
 
 // Sort the users (except by custom_progress).
 $sort = $table->get_sql_sort();
-$sortbycustom_progress = strncmp($sort, 'custom_progress', 8) == 0;
-if (!$sort || ($paged && $sortbycustom_progress)) {
+if (!$sort) {
      $sort = 'firstname DESC';
 }
-if (!$sortbycustom_progress) {
-    usort($users, 'block_custom_progress_compare_rows');
-}
+usort($users, 'block_custom_progress_compare_rows');
+
 
 // Get range of students for page.
 $startuser = $page * $perpage;
@@ -268,19 +273,8 @@ for ($i = $startuser; $i < $enduser; $i++) {
     } else {
         $lastonline = userdate($users[$i]->lastonlinetime);
     }
-    $userevents = block_custom_progress_filter_visibility($events, $users[$i]->id, $context, $course);
-    if (!empty($userevents)) {
-        $attempts = block_custom_progress_attempts($modules, $custom_progressconfig, $userevents, $users[$i]->id, $course->id);
-        $custom_progressbadge = block_custom_progress_badge($modules, $custom_progressconfig, $userevents, $users[$i]->id, $custom_progressblock->id, $attempts,
-            $course->id, true);
-        $custom_progressbar = block_custom_progress_bar($modules, $custom_progressconfig, $userevents, $users[$i]->id, $custom_progressblock->id, $attempts,
-            $course->id, true);
-        $custom_progress = block_custom_progress_percentage($userevents, $attempts, $custom_progressconfig).'%';
-    } else {
-        $custom_progressbar = get_string('no_visible_events_message', 'block_custom_progress');
-        $custom_progressvalue = 0;
-        $custom_progress = '?';
-    }
+    $custom_progressbadge = block_custom_progress_badge($users[$i]->custom_progress, $custom_progressconfig);
+    $custom_progressbar = block_custom_progress_bar($users[$i]->custom_progress);
 
     $rows[] = array(
         'firstname' => $users[$i]->firstname,
@@ -292,14 +286,11 @@ for ($i = $startuser; $i < $enduser; $i++) {
         'lastonline' => $lastonline,
         'custom_progressbadge' => $custom_progressbadge,
         'custom_progressbar' => $custom_progressbar,
-        'custom_progress' => $custom_progress
+        'custom_progress' => $users[$i]->custom_progress.'%'
     );
 }
 
 // Build the table content and output.
-if ($sortbycustom_progress) {
-    usort($rows, 'block_custom_progress_compare_rows');
-}
 if ($numberofusers > 0) {
     foreach ($rows as $row) {
         $table->add_data(array($row['select'], $row['picture'],
@@ -346,11 +337,6 @@ if ($CFG->enablenotes || $CFG->messaging) {
 $module = array('name' => 'core_user', 'fullpath' => '/user/module.js');
 $PAGE->requires->js_init_call('M.core_user.init_participation', null, false, $module);
 
-// Organise access to JS for custom_progress bars.
-$jsmodule = array('name' => 'block_custom_progress', 'fullpath' => '/blocks/custom_progress/module.js');
-$arguments = array(array($custom_progressblock->id), $userids);
-$PAGE->requires->js_init_call('M.block_custom_progress.setupScrolling', array(), false, $jsmodule);
-$PAGE->requires->js_init_call('M.block_custom_progress.init', $arguments, false, $jsmodule);
 
 echo $OUTPUT->container_end();
 echo $OUTPUT->footer();
@@ -383,7 +369,7 @@ function block_custom_progress_compare_rows($a, $b) {
                 $aspect = 'lastonlinetime';
                 break;
             case 'custom_progress':
-                $aspect = 'custom_progressvalue';
+                $aspect = 'custom_progress';
                 break;
         }
 

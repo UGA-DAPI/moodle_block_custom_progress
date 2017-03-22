@@ -259,3 +259,5 @@ $string['usecustom_help'] = 'When set to yes, you must provide provide customizi
 $string['enablecustomlevelpix'] = 'Use custom level badges';
 $string['usecustomlevelpix'] = 'When set to yes, you must provide an image for each level.';
 $string['usecustomlevelpix_help'] = 'When set to yes, you must provide an image for each level.';
+$string['errorlevelsincorrect'] = 'The minimum number of levels is 2';
+$string['errornotalllevelsbadgesprovided'] = 'Not all the level badges have been provided. Missing: {$a}';

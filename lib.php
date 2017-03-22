@@ -1374,19 +1374,10 @@ function block_custom_progress_attempts($modules, $config, $events, $userid, $co
 /**
  * Draws a custom_progress bar
  *
- * @param array    $modules  The modules used in the course
- * @param stdClass $config   The blocks configuration settings
- * @param array    $events   The possible events that can occur for modules
- * @param int      $userid   The user's id
- * @param int      instance  The block instance (in case more than one is being displayed)
- * @param array    $attempts The user's attempts on course activities
+ * @param int    $percent  The percent
  * @return string  Progress Bar HTML content
  */
-function block_custom_progress_bar($modules, $config, $events, $userid, $instance, $attempts, $course) {
-    global $OUTPUT, $CFG, $USER;
-    $content = '';
-    
-    $percent= block_custom_progress_percentage($events, $attempts,$config);
+function block_custom_progress_bar($percent) {
     $content = '';
   
 
@@ -1403,18 +1394,11 @@ function block_custom_progress_bar($modules, $config, $events, $userid, $instanc
 /**
  * Draws a custom_progress badge
  *
- * @param array    $modules  The modules used in the course
+ * @param array    $percent  The percent
  * @param stdClass $config   The blocks configuration settings
- * @param array    $events   The possible events that can occur for modules
- * @param int      $userid   The user's id
- * @param int      instance  The block instance (in case more than one is being displayed)
- * @param array    $attempts The user's attempts on course activities
  * @return string  Progress Bar HTML content
  */
-function block_custom_progress_badge($modules, $config, $events, $userid, $instance, $attempts, $course) {
-    global $OUTPUT, $CFG, $USER;
-    $content = '';
-    $percent= block_custom_progress_percentage($events, $attempts,$config);
+function block_custom_progress_badge($percent, $config) {
     $defaultlevels = get_config('block_custom_progress', 'levels') ?: 10;
     $levels = isset($config->levels) ? $config->levels : $defaultlevels;
     $user_level= (int)round($percent * $levels/100);
@@ -1448,7 +1432,7 @@ function block_custom_progress_badge($modules, $config, $events, $userid, $insta
  * @param stdClass $config   The blocks configuration settings
  * @return int  Progress value as a percentage
  */
-function block_custom_progress_percentage($events, $attempts,$config) {
+function block_custom_progress_percentage($attempts,$events,$config) {
     $attemptcount = 0;
     $eventcount = 0;
 

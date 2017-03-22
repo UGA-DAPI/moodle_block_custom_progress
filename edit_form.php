@@ -415,24 +415,26 @@ class block_custom_progress_edit_form extends block_edit_form {
      public function validation($data, $files) {
         global $USER;
         $errors = array();
-        if ($data['config_levels'] < 2) {
-            $errors['config_levels'] = get_string('errorlevelsincorrect', 'block_custom_progress');
-        }
-
-        
-
-        if ($data['config_enablecustomlevelpix']) {
-            // Make sure the user has uploaded all the badges.
-            $fs = get_file_storage();
-            $usercontext = context_user::instance($USER->id);
-            $expected = array_flip(range(0, $data['config_levels']-1));
-            $draftfiles = $fs->get_area_files($usercontext->id, 'user', 'draft', $data['config_levels_pix'], 'filename', false);
-            foreach ($draftfiles as $file) {
-                $pathinfo = pathinfo($file->get_filename());
-                unset($expected[$pathinfo['filename']]);
+        if ($data['config_enablecustom'] == 1) {
+            if ($data['config_levels'] < 2) {
+                $errors['config_levels'] = get_string('errorlevelsincorrect', 'block_custom_progress');
             }
-            if (count($expected) > 0) {
-                $errors['config_levels_pix'] = get_string('errornotalllevelspixprovided', 'block_custom_progress', implode(', ', array_keys($expected)));
+    
+            
+    
+            if ($data['config_enablecustomlevelpix']) {
+                // Make sure the user has uploaded all the badges.
+                $fs = get_file_storage();
+                $usercontext = context_user::instance($USER->id);
+                $expected = array_flip(range(0, $data['config_levels']-1));
+                $draftfiles = $fs->get_area_files($usercontext->id, 'user', 'draft', $data['config_levels_pix'], 'filename', false);
+                foreach ($draftfiles as $file) {
+                    $pathinfo = pathinfo($file->get_filename());
+                    unset($expected[$pathinfo['filename']]);
+                }
+                if (count($expected) > 0) {
+                    $errors['config_levels_pix'] = get_string('errornotalllevelspixprovided', 'block_custom_progress', implode(', ', array_keys($expected)));
+                }
             }
         }
 

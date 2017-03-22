@@ -191,20 +191,12 @@ class block_custom_progress extends block_base {
                                                             $blockinstance->events,
                                                             $USER->id,
                                                             $course->id);
-                        $this->content->text .= block_custom_progress_badge($modules,
-                                                                   $blockinstance->config,
+                        $percent = block_custom_progress_percentage( $attempts,
                                                                    $blockinstance->events,
-                                                                   $USER->id,
-                                                                   $blockinstance->id,
-                                                                   $attempts,
-                                                                   $course->id);
-                        $this->content->text .= block_custom_progress_bar($modules,
-                                                                   $blockinstance->config,
-                                                                   $blockinstance->events,
-                                                                   $USER->id,
-                                                                   $blockinstance->id,
-                                                                   $attempts,
-                                                                   $course->id);
+                                                                   $blockinstance->config);
+                        $this->content->text .= block_custom_progress_badge($percent,
+                                                                   $blockinstance->config);
+                        $this->content->text .= block_custom_progress_bar($percent);
                     }
                 }
             }
@@ -267,20 +259,12 @@ class block_custom_progress extends block_base {
             // Display custom_progress bar.
             if (has_capability('block/custom_progress:showbar', $this->context)) {
                 $attempts = block_custom_progress_attempts($modules, $this->config, $events, $USER->id, $COURSE->id);
-                $this->content->text .= block_custom_progress_badge($modules,
-                                                           $this->config,
+                $percent = block_custom_progress_percentage( $attempts,
                                                            $events,
-                                                           $USER->id,
-                                                           $this->instance->id,
-                                                           $attempts,
-                                                           $COURSE->id);
-                $this->content->text .= block_custom_progress_bar($modules,
-                                                           $this->config,
-                                                           $events,
-                                                           $USER->id,
-                                                           $this->instance->id,
-                                                           $attempts,
-                                                           $COURSE->id);
+                                                           $this->config);
+                $this->content->text .= block_custom_progress_badge($percent,
+                                                           $this->config);
+                $this->content->text .= block_custom_progress_bar($percent);
             }
             $blockinstancesonpage = array($this->instance->id);
 
@@ -306,8 +290,9 @@ class block_custom_progress extends block_base {
 
         $config = clone($data);
         // Move embedded files into a proper filearea and adjust HTML links to match
-        $config->levels_pix = file_save_draft_area_files($data->levels_pix, $this->context->id, 'block_custom_progress', 'badges', 0, array('subdirs'=>true));
-
+        if (isset($config->levels_pix)){
+            $config->levels_pix = file_save_draft_area_files($data->levels_pix, $this->context->id, 'block_custom_progress', 'badges', 0, array('subdirs'=>true));
+        }
         parent::instance_config_save($config, $nolongerused);
     }
 
