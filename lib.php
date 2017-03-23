@@ -1396,9 +1396,10 @@ function block_custom_progress_bar($percent) {
  *
  * @param array    $percent  The percent
  * @param stdClass $config   The blocks configuration settings
+ * @param int      instance  The block instance (in case more than one is being displayed)
  * @return string  Progress Bar HTML content
  */
-function block_custom_progress_badge($percent, $config) {
+function block_custom_progress_badge($percent,$instance, $config) {
     $defaultlevels = get_config('block_custom_progress', 'levels') ?: 10;
     $levels = isset($config->levels) ? $config->levels : $defaultlevels;
     $user_level= (int)round($percent * $levels/100);

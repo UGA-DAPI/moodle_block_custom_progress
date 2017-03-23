@@ -273,7 +273,7 @@ for ($i = $startuser; $i < $enduser; $i++) {
     } else {
         $lastonline = userdate($users[$i]->lastonlinetime);
     }
-    $custom_progressbadge = block_custom_progress_badge($users[$i]->custom_progress, $custom_progressconfig);
+    $custom_progressbadge = block_custom_progress_badge($users[$i]->custom_progress,  $custom_progressblock->id, $custom_progressconfig);
     $custom_progressbar = block_custom_progress_bar($users[$i]->custom_progress);
 
     $rows[] = array(
