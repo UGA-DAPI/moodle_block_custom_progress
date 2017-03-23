@@ -262,7 +262,7 @@ class block_custom_progress extends block_base {
                 $percent = block_custom_progress_percentage( $attempts,
                                                            $events,
                                                            $this->config);
-                $this->content->text .= block_custom_progress_badge($percent,
+                $this->content->text .= block_custom_progress_badge($percent,$this->instance->id,
                                                            $this->config);
                 $this->content->text .= block_custom_progress_bar($percent);
             }
