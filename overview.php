@@ -221,7 +221,7 @@ $tableheaders = array(
 $table->define_headers($tableheaders);
 $table->sortable(true);
 
-$table->set_attribute('class', 'overviewTable');
+$table->set_attribute('class', 'mod-block-custom_progress-overview');
 $table->column_style_all('padding', '5px');
 $table->column_style_all('text-align', 'left');
 $table->column_style_all('vertical-align', 'middle');
