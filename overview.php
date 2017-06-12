@@ -231,11 +231,11 @@ $table->column_style('select', 'width', '5%');
 $table->column_style('picture', 'width', '5%');
 $table->column_style('fullname', 'width', '10%');
 $table->column_style('lastonline', 'width', '10%');
-$table->column_style('custom_progressbadge', 'min-width', '100px');
-$table->column_style('custom_progressbadge', 'width', '*');
+//$table->column_style('custom_progressbadge', 'min-width', '100px');
+$table->column_style('custom_progressbadge', 'width', '100px');
 $table->column_style('custom_progressbadge', 'padding', '0');
-$table->column_style('custom_progressbar', 'min-width', '100px');
-$table->column_style('custom_progressbar', 'width', '*');
+//$table->column_style('custom_progressbar', 'min-width', '100px');
+$table->column_style('custom_progressbar', 'width', '220px');
 $table->column_style('custom_progress', 'text-align', 'center');
 $table->column_style('custom_progress', 'width', '8%');
 

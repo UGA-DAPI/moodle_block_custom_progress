@@ -1,4 +1,4 @@
-.block_custom_progress .current-level ,mod-block-custom_progress-overview .current-level {
+.block_custom_progress .current-level ,.mod-block-custom_progress-overview .current-level {
     margin: 10px auto;
     text-align: center;
     font-size: 4em;
@@ -9,41 +9,43 @@
     background: url([[pix:block_custom_progress|10]]) no-repeat;
 }
 
-.block_custom_progress .level-1 ,mod-block-custom_progress-overview .level-1{
+.block_custom_progress .level-1 ,.mod-block-custom_progress-overview .level-1{
     background-image: url([[pix:block_custom_progress|1]]);
 }
-.block_custom_progress .level-2,mod-block-custom_progress-overview .level-2 {
+.block_custom_progress .level-2,.mod-block-custom_progress-overview .level-2 {
     background-image: url([[pix:block_custom_progress|2]]);
 }
-.block_custom_progress .level-3,mod-block-custom_progress-overview .level-3 {
+.block_custom_progress .level-3,.mod-block-custom_progress-overview .level-3 {
     background-image: url([[pix:block_custom_progress|3]]);
 }
-.block_custom_progress .level-4,mod-block-custom_progress-overview .level-4 {
+.block_custom_progress .level-4,.mod-block-custom_progress-overview .level-4 {
     background-image: url([[pix:block_custom_progress|4]]);
 }
-.block_custom_progress .level-5,mod-block-custom_progress-overview .level-5 {
+.block_custom_progress .level-5,.mod-block-custom_progress-overview .level-5 {
     background-image: url([[pix:block_custom_progress|5]]);
 }
-.block_custom_progress .level-6,mod-block-custom_progress-overview .level-6 {
+.block_custom_progress .level-6,.mod-block-custom_progress-overview .level-6 {
     background-image: url([[pix:block_custom_progress|6]]);
 }
-.block_custom_progress .level-7,mod-block-custom_progress-overview .level-7 {
+.block_custom_progress .level-7,.mod-block-custom_progress-overview .level-7 {
     background-image: url([[pix:block_custom_progress|7]]);
 }
-.block_custom_progress .level-8 ,mod-block-custom_progress-overview .level-8{
+.block_custom_progress .level-8 ,.mod-block-custom_progress-overview .level-8{
     background-image: url([[pix:block_custom_progress|8]]);
 }
-.block_custom_progress .level-9 ,mod-block-custom_progress-overview .level-9{
+.block_custom_progress .level-9 ,.mod-block-custom_progress-overview .level-9{
     background-image: url([[pix:block_custom_progress|9]]);
 }
-.block_custom_progress .level-10,mod-block-custom_progress-overview .level-10 {
+.block_custom_progress .level-10,.mod-block-custom_progress-overview .level-10 {
     background-image: url([[pix:block_custom_progress|10]]);
 }
 
-.block_custom_progress .level-badge, mod-block-custom_progress-overview .level-badge {
+.block_custom_progress .level-badge, .mod-block-custom_progress-overview .level-badge {
     background: none;
     height: auto;
     width: auto;
+    text-align: center;
+     margin: 10px auto;
 }
 .block_custom_progress .level-badge img {
     width: 150px;
@@ -69,7 +71,7 @@
     position: relative;
     margin-bottom: 10px;
 }
-.block_custom_progress-level-progress .bar, mod-block-custom_progress-overview .bar {
+.block_custom_progress-level-progress .bar, .mod-block-custom_progress-overview .bar {
     background-color: green;
     border-radius: 5px;
     height: 25px;
@@ -85,10 +87,7 @@
     position: absolute;
 }
 
-/** Using !important because of super-qualified rules to bypass. */
-.path-blocks-xp table .highlight > td{
-    background-color: #D9EDF7 !important;
-}
+
 
 /**
  * Like notice.

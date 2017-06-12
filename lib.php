@@ -1292,9 +1292,8 @@ function block_custom_progress_attempts($modules, $config, $events, $userid, $co
             else {
                 if ($modernlogging) {
                     foreach ($readers as $logstore => $reader) {
-                        if (
-                            $reader instanceof \core\log\sql_internal_table_reader ||
-                            $reader instanceof \core\log\sql_internal_reader
+                        if ($reader instanceof \core\log\sql_internal_table_reader
+                            || $reader instanceof \core\log\sql_internal_reader
                         ) {
                             $logtable = '{'.$reader->get_internal_log_table_name().'}';
                             $query = preg_replace('/\{log\}/', $logtable, $module['actions']['viewed']['sql_internal_reader']);
@@ -1345,15 +1344,14 @@ function block_custom_progress_attempts($modules, $config, $events, $userid, $co
         }
 
         // Check if activity requires submission first.
-        if (
-            array_key_exists('showsubmittedfirst', $module) &&
-            $module['showsubmittedfirst'] &&
-            array_key_exists('submitted', $module['actions']) &&
-            isset($config->{'action_'.$uniqueid}) &&
-            $config->{'action_'.$uniqueid} != 'submitted' &&
-            (!isset($config->{'showsubmitted_'.$uniqueid}) || $config->{'showsubmitted_'.$uniqueid}) &&
-            $attempts[$uniqueid] !== true &&
-            $attempts[$uniqueid] !== 'failed'
+        if (array_key_exists('showsubmittedfirst', $module)
+            && $module['showsubmittedfirst']
+            && array_key_exists('submitted', $module['actions'])
+            && isset($config->{'action_'.$uniqueid})
+            && $config->{'action_'.$uniqueid} != 'submitted'
+            && (!isset($config->{'showsubmitted_'.$uniqueid}) || $config->{'showsubmitted_'.$uniqueid})
+            && $attempts[$uniqueid] !== true
+            && $attempts[$uniqueid] !== 'failed'
         ) {
             $query = $module['actions']['submitted'];
             $submitted = $DB->record_exists_sql($query, $parameters) ? true : false;
@@ -1379,14 +1377,14 @@ function block_custom_progress_attempts($modules, $config, $events, $userid, $co
  */
 function block_custom_progress_bar($percent) {
     $content = '';
-  
+
 
     // Add the percentage below the custom_progress bar.
     $content .= html_writer::start_tag('div', array('class' => 'block_custom_progress-level-progress'));
     $content .= html_writer::tag('div', '', array('style' => 'width: ' .  $percent . '%;', 'class' => 'bar'));
     $content .= html_writer::tag('div', $percent."% ", array('class' => 'txt'));
     $content .= html_writer::end_tag('div');
-       
+
 
     return $content;
 }
@@ -1402,7 +1400,7 @@ function block_custom_progress_bar($percent) {
 function block_custom_progress_badge($percent,$instance, $config) {
     $defaultlevels = get_config('block_custom_progress', 'levels') ?: 10;
     $levels = isset($config->levels) ? $config->levels : $defaultlevels;
-    $user_level= (int)round($percent * $levels/100);
+    $user_level= (int)round($percent * ($levels-1)/100);
     $defaultenablecustomlevelpix = get_config('block_custom_progress', 'enablecustomlevelpix') ?: DEFAULT_ENABLE_CUSTOM_PIX;
     $enablecustomlevelpix = isset($config->enablecustomlevelpix) ? $config->enablecustomlevelpix : DEFAULT_ENABLE_CUSTOM_PIX;
     $content = '';
@@ -1410,18 +1408,18 @@ function block_custom_progress_badge($percent,$instance, $config) {
         $content .= html_writer::tag('div',
             html_writer::empty_tag('img', array('src' => moodle_url::make_pluginfile_url(block_custom_progress_get_block_context($instance)->id, 'block_custom_progress',
             'badges', 0, '/', $user_level))),
-            array('class' => 'level-badge current-level level-' . $user_level)
+            array('class' => 'level-badge level-' . $user_level)
         );
     }elseif ($defaultenablecustomlevelpix != 0){
         $content .= html_writer::tag('div',
             html_writer::empty_tag('img', array('src' => moodle_url::make_pluginfile_url(1, 'block_custom_progress',
             'preset', 0, '/', $user_level))),
-            array('class' => 'level-badge current-level level-' . $user_level)
+            array('class' => 'level-badge  level-' . $user_level)
         );
     }else{
         $content .= html_writer::tag('div', $user_level, array('class' => 'current-level level-' . $user_level));
     }
-    
+
     return $content;
 }
 
@@ -1602,7 +1600,7 @@ function block_custom_progress_get_coursemodule($module, $recordid, $courseid, $
  */
 function block_custom_progress_pluginfile($course, $bi, $context, $filearea, $args, $forcedownload, array $options = array()) {
     global $CFG;
-    
+
 
     $fs = get_file_storage();
     $file = null;
